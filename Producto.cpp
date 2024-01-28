@@ -7,4 +7,11 @@ Producto::Producto(std::string nombre, double precio, unsigned int enOferta, uns
     this ->enOferta = enOferta;
     this ->stock = stock;
 }
+std::string Producto::mostrar(){
+    std::cout << "Nombre: " << nombre << std::endl;
+    std::cout << "Precio: " << precio << std::endl;
+    std::cout << "En Oferta: " << (enOferta ? "Sí" : "No") << std::endl;
+    std::cout << "Stock: " << stock << std::endl;
+
+}
 Producto::~Producto() {}
