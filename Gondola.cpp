@@ -21,8 +21,16 @@ void Gondola::redimensionar(int nuevaCapacidad) {
 }
 
 void Gondola ::mostrarProductos() {
-    if(this -> cantidad <= 0 ){
-        std::cout << "Lo siento no hay productos todavia en la Gondola" << std::endl;
+    {
+        if (this->cantidad <= 0)
+        {
+            std::cout << "No hay productos en la gondola. La capacidad de la misma es " << this->capacidad << "." << std::endl;
+        }
+        else
+        {
+            std::cout << "Actualmente hay " << this->cantidad << " productos en la gondola. La capacidad de la misma es " << this->capacidad << "." << std::endl;
+
+        }
     }
 }
 
@@ -38,7 +46,9 @@ void Gondola::agregarProductos(std::string productos_archivo){
     int stock;
 
     while (archivo >> nombre >> precio >> enOferta >> stock) {
-    this->productos = new Producto(nombre, precio, enOferta, stock);
-    std::cout<< "se termino la carga de productos" << std::endl;
+            this -> productos[cantidad] = Producto(nombre, precio, enOferta, stock);
+            std::cout<< "se termino la carga de productos" << std::endl;
+
+        cantidad ++;
     }
 }

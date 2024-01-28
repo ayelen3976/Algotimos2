@@ -5,5 +5,6 @@ Gondola miGondola;
 miGondola.mostrarProductos();
 
 miGondola.agregarProductos("productos.txt");
+miGondola.mostrarProductos();
 return 0;
 }

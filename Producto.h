@@ -10,6 +10,7 @@ private:
     unsigned int stock;
 
 public:
+    Producto() ;
     Producto(std::string nombre, double precio, unsigned int enOferta, unsigned int stock);
 
     ~Producto();

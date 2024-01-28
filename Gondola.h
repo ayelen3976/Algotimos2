@@ -13,6 +13,7 @@ private:
 
 public:
 Gondola();
+
 ~Gondola();
 
 
