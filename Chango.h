@@ -1,0 +1,11 @@
+
+#ifndef FERNANDEZ_109378_TP2_CHANGO_H
+#define FERNANDEZ_109378_TP2_CHANGO_H
+
+
+class Chango {
+
+};
+
+
+#endif //FERNANDEZ_109378_TP2_CHANGO_H

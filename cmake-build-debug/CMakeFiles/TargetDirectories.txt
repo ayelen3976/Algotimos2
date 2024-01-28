@@ -1,0 +1,3 @@
+/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug/CMakeFiles/fernandez_109378_tp2.dir
+/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
