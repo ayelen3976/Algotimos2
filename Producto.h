@@ -7,7 +7,7 @@ class Producto {
 private:
     std::string nombre;
     double precio;
-    int enOferta;
+    unsigned int enOferta;
     unsigned int stock;
 
 public:

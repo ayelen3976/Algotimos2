@@ -7,6 +7,8 @@ Producto::Producto(std::string nombre, double precio, unsigned int enOferta, uns
     this ->enOferta = enOferta;
     this ->stock = stock;
 }
+Producto::~Producto() {}
+
 std::string Producto::mostrar(){
     std::cout << "Nombre: " << nombre << std::endl;
     std::cout << "Precio: " << precio << std::endl;
@@ -14,4 +16,3 @@ std::string Producto::mostrar(){
     std::cout << "Stock: " << stock << std::endl;
 
 }
-Producto::~Producto() {}

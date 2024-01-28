@@ -9,17 +9,17 @@ private:
     unsigned int capacidad;
     unsigned int cantidad;
 
-    void redimensionar(int nuevaCapacidad);
+    //void redimensionar(int nuevaCapacidad);
 
 public:
 Gondola();
 
 ~Gondola();
 
+void mostrarProductos();
 
 void agregarProductos(std::string archivo_productos);
 
-void mostrarProductos();
 
 
 };
