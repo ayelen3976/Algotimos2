@@ -19,7 +19,7 @@ public:
     void mostrarProductoGondola();
     void mostrarProductoChango();
 
-    std::string buscarNombreProducto( std::string nombre);
+    std::string nombreProducto();
     double precioProducto();
 
     int ofertaProducto();
@@ -27,6 +27,7 @@ public:
     int stockProducto();
 
     void actualizarStock(unsigned int nuevostock);
+
 };
 
 

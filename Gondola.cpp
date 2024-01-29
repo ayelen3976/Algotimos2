@@ -67,7 +67,7 @@ void Gondola::agregarProductos(std::string productos_archivo) {
 
 int Gondola::buscarProducto(std::string nombre){
     for (int i = 0; i < cantidad; ++i) {
-        if(this->productos[i].buscarNombreProducto(nombre) == nombre){
+        if(this->productos[i].nombreProducto() == nombre){
             //std::cout << "Esta es la posición de mi producto buscado: " << i << std::endl;
             return i;
         }
@@ -78,4 +78,7 @@ int Gondola::buscarProducto(std::string nombre){
 
 Producto Gondola::obtenerProducto(unsigned int posicion) {
     return this->productos[posicion];
+}
+void Gondola::actualizarProductosGondola() {
+ std::cout<<"vamos a actualizar la gondola"<< std::endl;
 }

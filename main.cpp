@@ -9,7 +9,9 @@ miGondola.mostrarProductos();
 Chango miChango;
 miChango.buscarProductoEnGondola(miGondola, "compra.txt");
 miChango.mostrarProductosDelCHango();
-miGondola.mostrarProductos();
+miChango.realizarCompra();
+//miGondola.mostrarProductos(); revidar que me actualice el stock
+//miGondola.actualizarProductosGondola("productos.txt");
 
 return 0;
 }

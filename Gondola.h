@@ -22,5 +22,7 @@ int buscarProducto(std::string nombre);
 Producto obtenerProducto(unsigned int posicion);
 
 void redimensionarCapacidad(unsigned int factor);
+
+void actualizarProductosGondola();
 };
 #endif //FERNANDEZ_109378_TP2_GONDOLA_H

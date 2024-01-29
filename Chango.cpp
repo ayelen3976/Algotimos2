@@ -88,3 +88,37 @@ void Chango::buscarProductoEnGondola(Gondola &gondola, std::string archivo_produ
 
 
 }
+void Chango::realizarCompra() {
+        double totalCompra = 0.0;
+
+        std::cout << "VAMOS A CERRAR LA COMPRA AHORA" << std::endl;
+        std::cout << "Producto\tPrecio\tCantidad\tOferta(S/N)\tPrecio final" << std::endl;
+
+        for (unsigned int i = 0; i < this->cantidad; i++) {
+            double precioProducto = this->productos[i].precioProducto();
+
+            // Aplicar descuento del 10% si corresponde
+            if (this->productos[i].ofertaProducto() == 1) {
+                double descuento = precioProducto * 0.1; // Calcula el 10% del precio
+                precioProducto -= descuento; // Aplica el descuento
+            }
+
+            // Calcular precio final del producto
+            double precioFinal = precioProducto * this->productos[i].stockProducto();
+
+            // Mostrar información del producto
+            std::cout << this->productos[i].nombreProducto() << "\t"
+                      << precioProducto << "\t"
+                      << this->productos[i].stockProducto() << "\t"
+                      << (this->productos[i].ofertaProducto() == 1 ? "S" : "N") << "\t"
+                      << precioFinal << std::endl;
+
+            // Agregar precio final del producto al total de la compra
+            totalCompra += precioFinal;
+        }
+
+        // Mostrar total de la compra
+        std::cout << "Total: $" << totalCompra << std::endl;
+    }
+
+

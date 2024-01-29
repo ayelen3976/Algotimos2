@@ -22,7 +22,7 @@ std::cout << " En Oferta: " << (enOferta ? "Sí" : "No") << " |";
 std::cout << " cantidad:" << stock << std::endl;
 }
 
-std::string Producto::buscarNombreProducto(std::string nombre) {
+std::string Producto::nombreProducto() {
     return this->nombre;
 }
 
@@ -37,5 +37,8 @@ int Producto::stockProducto() {
     return this->stock;
 }
 void Producto::actualizarStock(unsigned int nuevostock) {
-    this ->stock = nuevostock;
+    std::cout<<nuevostock<<"<<<<stock nuevo" << std::endl;
+    this->stock = nuevostock;
 }
+
+

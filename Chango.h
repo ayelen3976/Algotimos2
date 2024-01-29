@@ -16,6 +16,7 @@ public:
     void buscarProductoEnGondola(Gondola& gondola, std::string archivo_compra);
     void mostrarProductosDelCHango();
     void redimensionarCapacidad(unsigned int factor);
+    void realizarCompra();
 
 };
 
