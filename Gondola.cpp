@@ -1,25 +1,16 @@
 #include <iostream>
 #include "Gondola.h"
 #include "fstream"
-#include <sstream>
 
 Gondola::Gondola() {
-this ->capacidad = 5;
+this -> capacidad = 5;
 this -> cantidad = 0;
-this ->productos = new Producto[5];
+this -> productos = new Producto[5];
 }
 Gondola :: ~Gondola() {
     delete [] productos;
 }
-/*void Gondola::redimensionar(int nuevaCapacidad) {
-    Producto* nuevoArray = new Producto[nuevaCapacidad];
-    for (int i = 0; i < cantidad; ++i) {
-        nuevoArray[i] = productos[i];
-    }
-    delete[] productos;
-    productos = nuevoArray;
-    capacidad = nuevaCapacidad;
-}*/
+
 void Gondola::mostrarProductos() {
     std::cout << "Mostrando productos..." << std::endl;
     if (this->cantidad == 0) {
@@ -27,11 +18,28 @@ void Gondola::mostrarProductos() {
     } else {
         std::cout << "Actualmente hay " << this->cantidad << " productos en la gondola. La capacidad de la misma es " << this->capacidad << "." << std::endl;
         for (unsigned int i = 0; i < this->cantidad; i++) {
-            std::cout << "Producto " << i << ": ";
-            //this->productos[i].mostrar();  // Asegúrate de que esta línea esté correcta
-            std::cout << "Mostrado producto " << i << std::endl;  // Mensaje de depuración
+            std::cout << "--------------Producto" << i << "--------------" << std::endl;
+            this->productos[i].mostrar();
         }
     }
+}
+
+void Gondola::redimensionarCapacidad(unsigned int factor) {
+    unsigned int nuevaCapacidad = capacidad * factor;
+
+    if (cantidad <= (capacidad / 2) - 1) { // Reducir la capacidad si la cantidad de productos es menor o igual a la mitad de la capacidad actual
+        nuevaCapacidad = capacidad / 2;
+    }
+
+    Producto* nuevosProductos = new Producto[nuevaCapacidad];
+
+    for (unsigned int i = 0; i < cantidad; ++i) {
+        nuevosProductos[i] = productos[i];
+    }
+
+    delete[] productos;
+    productos = nuevosProductos;
+    capacidad = nuevaCapacidad;
 }
 
 void Gondola::agregarProductos(std::string productos_archivo) {
@@ -41,34 +49,59 @@ void Gondola::agregarProductos(std::string productos_archivo) {
         return;
     }
 
-    std::string linea;
     std::string nombre;
     double precio;
     int enOferta;
     int stock;
+    while (archivo >> nombre >> precio >> enOferta >> stock) {
+        if (cantidad == capacidad) {
+            redimensionarCapacidad(2); // Duplica la capacidad si es necesario
+        }
 
-        while (std::getline(archivo, linea)) {
-            std::stringstream ss(linea);
-            if (ss >> nombre >> precio >> enOferta >> stock) {
+        this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
+        std::cout << "Se guardó el producto: " << nombre << std::endl;
+        cantidad++;
+    }
+     /*       while(archivo >> nombre >> precio >> enOferta >> stock) {
                 this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
                 std::cout<<" se guardo el prod :" << nombre << std::endl;
                 cantidad++;
+
+            if(cantidad == capacidad){
+                capacidad = capacidad*2;
+                Producto* nuevosProductos = new Producto[capacidad];
+                for (int i = 0; i < cantidad; ++i) {
+                    nuevosProductos[i] = this->productos[i];
+                }
+                delete [] this->productos;
+                this -> productos = nuevosProductos;
             }
-        }
+            if(cantidad <= (capacidad/2)-1){
+                capacidad =  (capacidad/2);
+                Producto* nuevosProductos = new Producto[capacidad];
+                for (int i = 0; i < cantidad; ++i) {
+                    nuevosProductos[i] = this->productos[i];
+                }
+                delete [] this->productos;
+                this -> productos = nuevosProductos;
+            }
+        }*/
 
         archivo.close();
 
-/*
-        if (ss >> nombre >> precio >> enOferta >> stock) {
-            if (cantidad == capacidad) {
-                // Asegúrate de tener un método que maneje el redimensionamiento
-                redimensionar(capacidad * 2);
-            }
-            this->productos[cantidad++] = Producto(nombre, precio, enOferta != 0, stock);
+}
 
-            // Impresión de depuración para verificar los datos leídos
-            std::cout << "Producto agregado: " << nombre << std::endl;
+int Gondola::buscarProducto(std::string nombre){
+    for (int i = 0; i < cantidad; ++i) {
+        if(this->productos[i].buscarNombreProducto(nombre) == nombre){
+            std::cout << "Esta es la posición de mi producto buscado: " << i << std::endl;
+            return i;
         }
-*/
+    }
+    return -1;
 
+}
+
+Producto Gondola::obtenerProducto(unsigned int posicion) {
+    return this->productos[posicion];
 }

@@ -1,0 +1,4 @@
+leche    2
+queso    150
+manteca  200
+tomate   10

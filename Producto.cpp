@@ -9,10 +9,24 @@ Producto::Producto(std::string nombre, double precio, unsigned int enOferta, uns
 }
 Producto::~Producto() {}
 
-std::string Producto::mostrar(){
+void Producto::mostrar(){
     std::cout << "Nombre: " << nombre << std::endl;
     std::cout << "Precio: " << precio << std::endl;
     std::cout << "En Oferta: " << (enOferta ? "Sí" : "No") << std::endl;
     std::cout << "Stock: " << stock << std::endl;
 
+}
+std::string Producto::buscarNombreProducto(std::string nombre) {
+    return this->nombre;
+}
+
+double Producto::precioProducto() {
+    return this->precio;
+}
+
+int Producto::ofertaProducto() {
+    return this->enOferta;
+}
+int Producto::stockProducto() {
+    return this->stock;
 }

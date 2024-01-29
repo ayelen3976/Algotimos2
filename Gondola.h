@@ -9,18 +9,18 @@ private:
     unsigned int capacidad;
     unsigned int cantidad;
 
-    //void redimensionar(int nuevaCapacidad);
-
 public:
 Gondola();
-
 ~Gondola();
 
 void mostrarProductos();
 
 void agregarProductos(std::string archivo_productos);
 
+int buscarProducto(std::string nombre);
 
+Producto obtenerProducto(unsigned int posicion);
 
+void redimensionarCapacidad(unsigned int factor); // Declaración de la función
 };
 #endif //FERNANDEZ_109378_TP2_GONDOLA_H

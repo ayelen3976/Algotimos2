@@ -11,12 +11,18 @@ private:
     unsigned int stock;
 
 public:
-    Producto() ;
+    Producto();
     Producto(std::string nombre, double precio, unsigned int enOferta, unsigned int stock);
 
     ~Producto();
 
-    std::string mostrar();
+    void mostrar();
+    std::string buscarNombreProducto( std::string nombre);
+    double precioProducto();
+
+    int ofertaProducto();
+
+    int stockProducto();
 };
 
 
