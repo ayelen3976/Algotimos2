@@ -12,14 +12,13 @@ Gondola :: ~Gondola() {
 }
 
 void Gondola::mostrarProductos() {
-    std::cout << "Mostrando productos..." << std::endl;
     if (this->cantidad == 0) {
         std::cout << "No hay productos en la gondola. La capacidad de la misma es " << this->capacidad << "." << std::endl;
     } else {
         std::cout << "Actualmente hay " << this->cantidad << " productos en la gondola. La capacidad de la misma es " << this->capacidad << "." << std::endl;
         for (unsigned int i = 0; i < this->cantidad; i++) {
-            std::cout << "--------------Producto" << i << "--------------" << std::endl;
-            this->productos[i].mostrar();
+            std::cout << "-------------------------------------------------------------"<< std::endl;
+            this->productos[i].mostrarProductoGondola();
         }
     }
 }
@@ -59,34 +58,9 @@ void Gondola::agregarProductos(std::string productos_archivo) {
         }
 
         this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
-        std::cout << "Se guardó el producto: " << nombre << std::endl;
+       // std::cout << "Se guardó el producto: " << nombre  << "en el vector"<< std::endl;
         cantidad++;
     }
-     /*       while(archivo >> nombre >> precio >> enOferta >> stock) {
-                this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
-                std::cout<<" se guardo el prod :" << nombre << std::endl;
-                cantidad++;
-
-            if(cantidad == capacidad){
-                capacidad = capacidad*2;
-                Producto* nuevosProductos = new Producto[capacidad];
-                for (int i = 0; i < cantidad; ++i) {
-                    nuevosProductos[i] = this->productos[i];
-                }
-                delete [] this->productos;
-                this -> productos = nuevosProductos;
-            }
-            if(cantidad <= (capacidad/2)-1){
-                capacidad =  (capacidad/2);
-                Producto* nuevosProductos = new Producto[capacidad];
-                for (int i = 0; i < cantidad; ++i) {
-                    nuevosProductos[i] = this->productos[i];
-                }
-                delete [] this->productos;
-                this -> productos = nuevosProductos;
-            }
-        }*/
-
         archivo.close();
 
 }
@@ -94,7 +68,7 @@ void Gondola::agregarProductos(std::string productos_archivo) {
 int Gondola::buscarProducto(std::string nombre){
     for (int i = 0; i < cantidad; ++i) {
         if(this->productos[i].buscarNombreProducto(nombre) == nombre){
-            std::cout << "Esta es la posición de mi producto buscado: " << i << std::endl;
+            //std::cout << "Esta es la posición de mi producto buscado: " << i << std::endl;
             return i;
         }
     }

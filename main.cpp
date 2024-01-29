@@ -9,5 +9,7 @@ miGondola.mostrarProductos();
 Chango miChango;
 miChango.buscarProductoEnGondola(miGondola, "compra.txt");
 miChango.mostrarProductosDelCHango();
+miGondola.mostrarProductos();
+
 return 0;
 }

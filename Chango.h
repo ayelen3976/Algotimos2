@@ -14,7 +14,9 @@ public:
 
     void cargarProductoEnGondola(std::string nombre, double precio, unsigned int enOferta, unsigned int stock);
     void buscarProductoEnGondola(Gondola& gondola, std::string archivo_compra);
-     void mostrarProductosDelCHango();
+    void mostrarProductosDelCHango();
+    void redimensionarCapacidad(unsigned int factor);
+
 };
 
 

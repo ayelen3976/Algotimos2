@@ -9,13 +9,19 @@ Producto::Producto(std::string nombre, double precio, unsigned int enOferta, uns
 }
 Producto::~Producto() {}
 
-void Producto::mostrar(){
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "Precio: " << precio << std::endl;
-    std::cout << "En Oferta: " << (enOferta ? "Sí" : "No") << std::endl;
-    std::cout << "Stock: " << stock << std::endl;
-
+void Producto::mostrarProductoGondola(){
+    std::cout << " Nombre: " << nombre << " |";
+    std::cout << " Precio: " << precio << " |";
+    std::cout << " En Oferta: " << (enOferta ? "Sí" : "No") << " |";
+    std::cout << " Stock: " << stock << std::endl;
 }
+void Producto::mostrarProductoChango(){
+std::cout << " Nombre: " << nombre << " |";
+std::cout << " Precio: " << precio << " |";
+std::cout << " En Oferta: " << (enOferta ? "Sí" : "No") << " |";
+std::cout << " cantidad:" << stock << std::endl;
+}
+
 std::string Producto::buscarNombreProducto(std::string nombre) {
     return this->nombre;
 }
@@ -29,4 +35,7 @@ int Producto::ofertaProducto() {
 }
 int Producto::stockProducto() {
     return this->stock;
+}
+void Producto::actualizarStock(unsigned int nuevostock) {
+    this ->stock = nuevostock;
 }

@@ -10,22 +10,42 @@ Chango::~Chango() {
     delete [] productos;
 }
 
+void Chango::redimensionarCapacidad(unsigned int factor) {
+    unsigned int nuevaCapacidad = capacidad * factor;
+
+    if (cantidad <= (capacidad / 2) - 1) {
+        nuevaCapacidad = capacidad / 2;
+    }
+
+    Producto* nuevosProductos = new Producto[nuevaCapacidad];
+
+    for (unsigned int i = 0; i < cantidad; ++i) {
+        nuevosProductos[i] = productos[i];
+    }
+
+    delete[] productos;
+    productos = nuevosProductos;
+    capacidad = nuevaCapacidad;
+}
 
 void Chango::cargarProductoEnGondola(std::string nombre, double precio, unsigned int enOferta, unsigned int stock) {
+    if (cantidad == capacidad) {
+        redimensionarCapacidad(2); // Duplica la capacidad si es necesario
+    }
+
     this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
-    std::cout<<" se guardo el prod en el chango ! :" << nombre << std::endl;
+    std::cout << "Se guardó el producto en el chango: " << nombre << std::endl;
     cantidad++;
 }
 
 void Chango::mostrarProductosDelCHango() {
-    std::cout << "Mostrando productos del changoo..." << std::endl;
     if (this->cantidad == 0) {
-        std::cout << "No hay productos en el chango. La capacidad de la misma es " << this->capacidad << "." << std::endl;
+        //std::cout << "No hay productos en el chango. La capacidad de la misma es " << this->capacidad << "." << std::endl;
     } else {
         std::cout << "Actualmente hay " << this->cantidad << " productos en el changoo. La capacidad de la misma es " << this->capacidad << "." << std::endl;
         for (unsigned int i = 0; i < this->cantidad; i++) {
-            std::cout << "--------------Producto chango" << i << "--------------" << std::endl;
-            this->productos[i].mostrar();
+           // std::cout << "--------------Producto chango" << i << "--------------" << std::endl;
+            this->productos[i].mostrarProductoChango();
         }
     }
 }
@@ -47,7 +67,18 @@ void Chango::buscarProductoEnGondola(Gondola &gondola, std::string archivo_produ
             unsigned int oferta_producto= gondola.obtenerProducto(posicion).ofertaProducto();
             unsigned int stock_producto =  gondola.obtenerProducto(posicion).stockProducto();
 
-       this ->cargarProductoEnGondola(nombre, precio_producto, oferta_producto, stock_producto );
+            if (cantidad <= stock_producto) {
+                // Si hay suficiente stock, cargar el producto en el chango
+                std::cout << "Se compraron " << cantidad << " unidades del producto " << nombre << std::endl;
+                this->cargarProductoEnGondola(nombre, precio_producto, oferta_producto, cantidad);
+                gondola.obtenerProducto(posicion).actualizarStock(stock_producto - cantidad);
+            } else {
+                std::cout << "Del producto " << nombre << " solo hay " << stock_producto << " unidades disponibles." << std::endl;
+                std::cout << "Se compraron " << stock_producto << " unidades del producto " << nombre << std::endl;
+                this->cargarProductoEnGondola(nombre, precio_producto, oferta_producto, stock_producto);
+                gondola.obtenerProducto(posicion).actualizarStock(0);
+
+            }
         } else {
             std::cout << "El producto " << nombre << " no se encuentra en la góndola." << std::endl;
         }

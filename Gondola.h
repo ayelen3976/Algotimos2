@@ -21,6 +21,6 @@ int buscarProducto(std::string nombre);
 
 Producto obtenerProducto(unsigned int posicion);
 
-void redimensionarCapacidad(unsigned int factor); // Declaración de la función
+void redimensionarCapacidad(unsigned int factor);
 };
 #endif //FERNANDEZ_109378_TP2_GONDOLA_H

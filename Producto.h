@@ -16,13 +16,17 @@ public:
 
     ~Producto();
 
-    void mostrar();
+    void mostrarProductoGondola();
+    void mostrarProductoChango();
+
     std::string buscarNombreProducto( std::string nombre);
     double precioProducto();
 
     int ofertaProducto();
 
     int stockProducto();
+
+    void actualizarStock(unsigned int nuevostock);
 };
 
 
