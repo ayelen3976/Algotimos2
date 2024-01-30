@@ -27,6 +27,7 @@ void Chango::abrir_archivo_compra(Gondola &gondola, std::string archivo_producto
     }
     archivo.close();
 }
+
 void Chango::buscar_comprar_producto(const std::string& nombre, unsigned int cantidad, Gondola& gondola) {
     int posicion = gondola.buscar_producto(nombre);
     if (posicion != -1) {
@@ -78,9 +79,6 @@ void Chango::redimensionar_capacidad(unsigned int factor) {
     productos = nuevosProductos;
     capacidad = nuevaCapacidad;
 }
-
-
-
 
 void Chango::mostrar_productos_del_chango() {
     if (this->cantidad == 0) {
