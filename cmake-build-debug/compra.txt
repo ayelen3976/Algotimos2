@@ -1,4 +1,8 @@
 leche    2
 queso    150
-manteca  200
-tomate   10
+manteca  1
+tomate   12
+canelas  52
+cerezas	 52
+alfajor  12
+canela   52

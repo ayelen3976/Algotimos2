@@ -1,44 +1,37 @@
 #include "Producto.h"
 Producto::Producto(){}
 
-Producto::Producto(std::string nombre, double precio, unsigned int enOferta, unsigned int stock) {
+Producto::Producto(std::string nombre, double precio, unsigned int descuento, unsigned int stock) {
     this -> nombre = nombre;
     this ->precio = precio;
-    this ->enOferta = enOferta;
+    this ->descuento = descuento;
     this ->stock = stock;
 }
 Producto::~Producto() {}
 
-void Producto::mostrarProductoGondola(){
-    std::cout << " Nombre: " << nombre << " |";
-    std::cout << " Precio: " << precio << " |";
-    std::cout << " En Oferta: " << (enOferta ? "Sí" : "No") << " |";
-    std::cout << " Stock: " << stock << std::endl;
+void Producto::mostrar_producto_gondola(){
+    std::cout << nombre<<"\t "<<precio<<"\t"<<descuento<<"\t"<<stock<<"\t " << std::endl;
 }
-void Producto::mostrarProductoChango(){
+void Producto::mostrar_producto_chango(){
 std::cout << " Nombre: " << nombre << " |";
 std::cout << " Precio: " << precio << " |";
-std::cout << " En Oferta: " << (enOferta ? "Sí" : "No") << " |";
+std::cout << " En Oferta: " << (descuento ? "Sí" : "No") << " |";
 std::cout << " cantidad:" << stock << std::endl;
 }
 
-std::string Producto::nombreProducto() {
+std::string Producto::nombre_producto() {
     return this->nombre;
 }
 
-double Producto::precioProducto() {
+double Producto::precio_producto() {
     return this->precio;
 }
 
-int Producto::ofertaProducto() {
-    return this->enOferta;
+int Producto::oferta_producto() {
+    return this->descuento;
 }
-int Producto::stockProducto() {
+int Producto::stock_producto() {
     return this->stock;
-}
-void Producto::actualizarStock(unsigned int nuevostock) {
-    std::cout<<nuevostock<<"<<<<stock nuevo" << std::endl;
-    this->stock = nuevostock;
 }
 
 

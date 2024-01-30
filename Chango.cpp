@@ -10,47 +10,7 @@ Chango::~Chango() {
     delete [] productos;
 }
 
-void Chango::redimensionarCapacidad(unsigned int factor) {
-    unsigned int nuevaCapacidad = capacidad * factor;
-
-    if (cantidad <= (capacidad / 2) - 1) {
-        nuevaCapacidad = capacidad / 2;
-    }
-
-    Producto* nuevosProductos = new Producto[nuevaCapacidad];
-
-    for (unsigned int i = 0; i < cantidad; ++i) {
-        nuevosProductos[i] = productos[i];
-    }
-
-    delete[] productos;
-    productos = nuevosProductos;
-    capacidad = nuevaCapacidad;
-}
-
-void Chango::cargarProductoEnGondola(std::string nombre, double precio, unsigned int enOferta, unsigned int stock) {
-    if (cantidad == capacidad) {
-        redimensionarCapacidad(2); // Duplica la capacidad si es necesario
-    }
-
-    this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
-    std::cout << "Se guardó el producto en el chango: " << nombre << std::endl;
-    cantidad++;
-}
-
-void Chango::mostrarProductosDelCHango() {
-    if (this->cantidad == 0) {
-        //std::cout << "No hay productos en el chango. La capacidad de la misma es " << this->capacidad << "." << std::endl;
-    } else {
-        std::cout << "Actualmente hay " << this->cantidad << " productos en el changoo. La capacidad de la misma es " << this->capacidad << "." << std::endl;
-        for (unsigned int i = 0; i < this->cantidad; i++) {
-           // std::cout << "--------------Producto chango" << i << "--------------" << std::endl;
-            this->productos[i].mostrarProductoChango();
-        }
-    }
-}
-
-void Chango::buscarProductoEnGondola(Gondola &gondola, std::string archivo_productos) {
+void Chango::abrir_archivo_compra(Gondola &gondola, std::string archivo_productos) {
     std::ifstream archivo(archivo_productos);
     if (!archivo) {
         std::cout << "No se pudo abrir el archivo " << archivo_productos << std::endl;
@@ -58,67 +18,104 @@ void Chango::buscarProductoEnGondola(Gondola &gondola, std::string archivo_produ
     }
     std::string nombre;
     unsigned int cantidad;
-    int posicion;
-
     while (archivo >> nombre >> cantidad) {
-    posicion = gondola.buscarProducto(nombre);
-        if (posicion != -1) {
-            double precio_producto = gondola.obtenerProducto(posicion).precioProducto();
-            unsigned int oferta_producto= gondola.obtenerProducto(posicion).ofertaProducto();
-            unsigned int stock_producto =  gondola.obtenerProducto(posicion).stockProducto();
+        buscar_comprar_producto(nombre, cantidad, gondola);
+    }
+    if(cantidad <= (capacidad/2)-1){
+        capacidad =  (capacidad/2);
+        redimensionar_capacidad(capacidad);
+    }
+    archivo.close();
+}
+void Chango::buscar_comprar_producto(const std::string& nombre, unsigned int cantidad, Gondola& gondola) {
+    int posicion = gondola.buscar_producto(nombre);
+    if (posicion != -1) {
+        double precio_producto = gondola.obtener_producto(posicion).precio_producto();
+        unsigned int oferta_producto = gondola.obtener_producto(posicion).oferta_producto();
+        unsigned int stock_producto = gondola.obtener_producto(posicion).stock_producto();
 
-            if (cantidad <= stock_producto) {
-                // Si hay suficiente stock, cargar el producto en el chango
-                std::cout << "Se compraron " << cantidad << " unidades del producto " << nombre << std::endl;
-                this->cargarProductoEnGondola(nombre, precio_producto, oferta_producto, cantidad);
-                gondola.obtenerProducto(posicion).actualizarStock(stock_producto - cantidad);
-            } else {
-                std::cout << "Del producto " << nombre << " solo hay " << stock_producto << " unidades disponibles." << std::endl;
-                std::cout << "Se compraron " << stock_producto << " unidades del producto " << nombre << std::endl;
-                this->cargarProductoEnGondola(nombre, precio_producto, oferta_producto, stock_producto);
-                gondola.obtenerProducto(posicion).actualizarStock(0);
-
-            }
+        if (cantidad <= stock_producto) {
+            comprar_producto(nombre, precio_producto, oferta_producto, cantidad);
+            Producto producto_actualizado(nombre, precio_producto, oferta_producto, (stock_producto-cantidad));
+            gondola.actualizar_productos_gondola(&producto_actualizado);
         } else {
-            std::cout << "El producto " << nombre << " no se encuentra en la góndola." << std::endl;
+            comprar_producto(nombre, precio_producto, oferta_producto, stock_producto);
+            Producto producto1(nombre, precio_producto, oferta_producto, 0);
+            gondola.eliminar_producto(nombre);
+            std::cout << "SOBREAVISO : El producto " << nombre <<" solo nos quedan: " << stock_producto<< " ,igualmente se lo agregaremos :)"<<std::endl;
+        }
+    } else {
+        std::cout << " AVISO : El producto " << nombre << " de su lista de compras no se encuentra en la góndola." << std::endl;
+    }
+}
+
+void Chango::comprar_producto(const std::string& nombre, double precio, unsigned int oferta, unsigned int cantidad) {
+    cargar_producto_en_chango(nombre, precio, oferta, cantidad);
+}
+
+
+void Chango::cargar_producto_en_chango(std::string nombre, double precio, unsigned int enOferta, unsigned int stock) {
+    if (cantidad == capacidad) {
+        redimensionar_capacidad(2);
+    }
+    this->productos[cantidad] = Producto(nombre, precio, enOferta, stock);
+    cantidad++;
+}
+
+
+void Chango::redimensionar_capacidad(unsigned int factor) {
+    unsigned int nuevaCapacidad = capacidad * factor;
+
+    if (cantidad <= (capacidad / 2) - 1) {
+        nuevaCapacidad = capacidad / 2;
+    }
+    Producto *nuevosProductos = new Producto[nuevaCapacidad];
+
+    for (unsigned int i = 0; i < cantidad; ++i) {
+        nuevosProductos[i] = productos[i];
+    }
+    delete[] productos;
+    productos = nuevosProductos;
+    capacidad = nuevaCapacidad;
+}
+
+
+
+
+void Chango::mostrar_productos_del_chango() {
+    if (this->cantidad == 0) {
+        std::cout << "No hay productos en el chango."<< "." << std::endl;
+    } else {
+        for (unsigned int i = 0; i < this->cantidad; i++) {
+            this->productos[i].mostrar_producto_chango();
         }
     }
-
-    archivo.close();
-
-
 }
-void Chango::realizarCompra() {
+
+void Chango::realizar_compra() {
         double totalCompra = 0.0;
+    std::cout << "///////////////////~VAMOS A CERRAR LA COMPRA~//////////////////" << std::endl;
 
-        std::cout << "VAMOS A CERRAR LA COMPRA AHORA" << std::endl;
-        std::cout << "Producto\tPrecio\tCantidad\tOferta(S/N)\tPrecio final" << std::endl;
-
+    std::cout << "Producto\tPrecioU\t\tCantidad\tOferta(S/N)\t\tPrecioI" << std::endl;
         for (unsigned int i = 0; i < this->cantidad; i++) {
-            double precioProducto = this->productos[i].precioProducto();
+            double precioProducto = this->productos[i].precio_producto();
 
-            // Aplicar descuento del 10% si corresponde
-            if (this->productos[i].ofertaProducto() == 1) {
-                double descuento = precioProducto * 0.1; // Calcula el 10% del precio
-                precioProducto -= descuento; // Aplica el descuento
+            if (this->productos[i].oferta_producto() == 1) {
+                double descuento = precioProducto * 0.1;
+                precioProducto -= descuento;
             }
-
-            // Calcular precio final del producto
-            double precioFinal = precioProducto * this->productos[i].stockProducto();
-
-            // Mostrar información del producto
-            std::cout << this->productos[i].nombreProducto() << "\t"
-                      << precioProducto << "\t"
-                      << this->productos[i].stockProducto() << "\t"
-                      << (this->productos[i].ofertaProducto() == 1 ? "S" : "N") << "\t"
+            double precioFinal = precioProducto * this->productos[i].stock_producto();
+            std::cout << this->productos[i].nombre_producto() <<"\t\t"
+                      << this->productos[i].precio_producto()<<"\t\t\t"
+                      << this->productos[i].stock_producto() <<"\t\t\t"
+                      << (this->productos[i].oferta_producto() == 1 ? "S" : "N") << "\t\t\t\t"
                       << precioFinal << std::endl;
 
-            // Agregar precio final del producto al total de la compra
             totalCompra += precioFinal;
         }
-
-        // Mostrar total de la compra
         std::cout << "Total: $" << totalCompra << std::endl;
+    std::cout << "//////////////////////////////////////////////////////////////" << std::endl;
+
     }
 
 
