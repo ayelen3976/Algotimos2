@@ -25,15 +25,6 @@ public:
     // Postcondición: Realiza la compra del producto especificado en la góndola con la cantidad especificada.
     void buscar_comprar_producto(const std::string& nombre, unsigned int cantidad, Gondola& gondola);
 
-    // Precondición: El objeto Chango debe estar correctamente inicializado y los parámetros deben ser válidos.
-    // Postcondición: Agrega un producto al chango con la información especificada.
-    void comprar_producto(const std::string& nombre, double precio, unsigned int oferta, unsigned int cantidad);
-
-
-    // Precondición: El objeto Chango debe estar correctamente inicializado.
-    // Postcondición: Agrega un producto al chango con el nombre, precio, oferta y cantidad especificados.
-    void cargar_producto_en_chango(std::string nombre, double precio, unsigned int enOferta, unsigned int stock);
-
     // Precondición: El objeto Chango debe estar correctamente inicializado y el factor debe ser mayor que 0.
     // Postcondición: Ajusta la capacidad del chango según el factor especificado.
     void redimensionar_capacidad(unsigned int factor);

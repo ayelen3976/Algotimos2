@@ -13,10 +13,8 @@ void Producto::mostrar_producto_gondola(){
     std::cout << nombre<<"\t "<<precio<<"\t"<<descuento<<"\t"<<stock<<"\t " << std::endl;
 }
 void Producto::mostrar_producto_chango(){
-std::cout << " Nombre: " << nombre << " |";
-std::cout << " Precio: " << precio << " |";
-std::cout << " En Oferta: " << (descuento ? "Sí" : "No") << " |";
-std::cout << " cantidad:" << stock << std::endl;
+std::cout << " cantidad: " << stock << "\t\t";
+std::cout << " Nombre: " << nombre << "\t\t"<<std::endl;
 }
 
 std::string Producto::nombre_producto() {

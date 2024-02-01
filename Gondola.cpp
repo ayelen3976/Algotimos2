@@ -15,7 +15,6 @@ void Gondola::mostrar_productos(){
     if (this->cantidad == 0) {
         std::cout << "No hay productos en la gondola." << std::endl;
     } else {
-        std::cout << "Actualmente hay " << this->cantidad << " productos en la gondola. La capacidad es de " << this->capacidad << "." << std::endl;
         std::cout << "///////PRODUCTOS////////" << std::endl;
         for (unsigned int i = 0; i < this->cantidad; i++) {
             this->productos[i].mostrar_producto_gondola();
@@ -31,7 +30,6 @@ void Gondola::agregar_productos(std::string productos_archivo){
         std::cout << "No se pudo abrir el archivo " << productos_archivo << std::endl;
         return;
     }
-
     std::string nombre;
     double precio;
     int descuento;
@@ -83,7 +81,7 @@ void Gondola::actualizar_productos_gondola(Producto* producto) {
     }
 }
 void Gondola::guardar_stock_actualizado(std::string archivo_productos) {
-    std::cout << "vamos a guardar el stock actualizado en el archivo !!!!" << std::endl;
+    std::cout << "Se guardo el stock actualizado en el archivo de productos, muchas gracias por su compra!!!!" << std::endl;
     {
         std::ofstream arProductosActualizados(archivo_productos);
 

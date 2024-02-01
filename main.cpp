@@ -11,7 +11,9 @@ mi_gondola.mostrar_productos();
 Chango mi_chango;
 
 mi_chango.abrir_archivo_compra(mi_gondola, "compra.txt");
+mi_chango.mostrar_productos_del_chango();
 mi_chango.realizar_compra();
+
 mi_gondola.guardar_stock_actualizado("productos.txt");
 
 return 0;
