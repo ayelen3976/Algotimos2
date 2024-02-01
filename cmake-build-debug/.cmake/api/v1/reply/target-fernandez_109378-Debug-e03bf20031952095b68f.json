@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "fernandez_109378_tp2"
+			"path" : "fernandez_109378"
 		}
 	],
 	"backtrace" : 1,
@@ -56,7 +56,7 @@
 			]
 		}
 	],
-	"id" : "fernandez_109378_tp2::@6890427a1f51a3e7e1df",
+	"id" : "fernandez_109378::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -72,8 +72,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "fernandez_109378_tp2",
-	"nameOnDisk" : "fernandez_109378_tp2",
+	"name" : "fernandez_109378",
+	"nameOnDisk" : "fernandez_109378",
 	"paths" : 
 	{
 		"build" : ".",

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug"
+			"value" : "/home/ayelen/Descargas/fernandez_109378/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -543,7 +543,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/home/ayelen/Descargas/fernandez_109378/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -603,7 +603,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ayelen/Descargas/fernandez_109378_tp2"
+			"value" : "/home/ayelen/Descargas/fernandez_109378"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -843,7 +843,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "fernandez_109378_tp2"
+			"value" : "fernandez_109378"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1138,7 +1138,7 @@
 			"value" : "TRUE"
 		},
 		{
-			"name" : "fernandez_109378_tp2_BINARY_DIR",
+			"name" : "fernandez_109378_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1147,10 +1147,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug"
+			"value" : "/home/ayelen/Descargas/fernandez_109378/cmake-build-debug"
 		},
 		{
-			"name" : "fernandez_109378_tp2_IS_TOP_LEVEL",
+			"name" : "fernandez_109378_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1162,7 +1162,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "fernandez_109378_tp2_SOURCE_DIR",
+			"name" : "fernandez_109378_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1171,7 +1171,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ayelen/Descargas/fernandez_109378_tp2"
+			"value" : "/home/ayelen/Descargas/fernandez_109378"
 		}
 	],
 	"kind" : "cache",

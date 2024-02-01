@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "fernandez_109378_tp2",
+					"name" : "fernandez_109378",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "fernandez_109378_tp2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-fernandez_109378_tp2-Debug-250af456926dec746391.json",
-					"name" : "fernandez_109378_tp2",
+					"id" : "fernandez_109378::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-fernandez_109378-Debug-e03bf20031952095b68f.json",
+					"name" : "fernandez_109378",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/ayelen/Descargas/fernandez_109378_tp2/cmake-build-debug",
-		"source" : "/home/ayelen/Descargas/fernandez_109378_tp2"
+		"build" : "/home/ayelen/Descargas/fernandez_109378/cmake-build-debug",
+		"source" : "/home/ayelen/Descargas/fernandez_109378"
 	},
 	"version" : 
 	{
